@@ -18,6 +18,7 @@ def main():
         Postflight(),
     ]
     utils = Utils()
+    #pipeline design pattern
     p = Pipeline(steps)
     p.run(inputs, utils)
 
