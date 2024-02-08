@@ -1,7 +1,8 @@
-from pipelines.Steps.get_video_list import GetVideoList
 from pipelines.pipeline import Pipeline
-from pipelines.Steps.download_captions import DownloadCaotions
 from pipelines.Steps.preflight import Preflight
+from pipelines.Steps.get_video_list import GetVideoList
+from pipelines.Steps.download_captions import DownloadCaotions
+from pipelines.Steps.read_caption import ReadCaption
 from pipelines.Steps.postflight import Postflight
 from utils import Utils
 
@@ -15,6 +16,7 @@ def main():
         Preflight(),
         GetVideoList(),
         DownloadCaotions(),
+        ReadCaption(),
         Postflight(),
     ]
     utils = Utils()
