@@ -29,4 +29,7 @@ class DownloadCaotions(Step):
                 # download caption file
                 with YoutubeDL(ydl_opts) as ydl:
                     ydl.download(url)
-            print("caption file exists for", url)
+            else:
+                print("caption file exists for", url)
+            print("finish test")
+            break
