@@ -6,11 +6,10 @@ class DownloadCaotions(Step):
 
     def process(self, data, inputs, utils):
         print("----------download captions----------")
-        for url in data:
-            # get caption file path name
-            file_path_name = utils.get_caption_filepath(url)
-            # check if caption file exists
-            if not utils.caption_file_exists(url):
+        for youtube in data:
+            # check if caption file exists, srt format
+            if not utils.caption_file_exists(youtube.caption_file_path):
+                print("caption file does not exist for", youtube.filename)
                 # download caption file
                 # writeautomaticsub: download auto-generated caption
                 # writesubtitles: download subtitle
@@ -24,12 +23,13 @@ class DownloadCaotions(Step):
                     "subtitleslangs": ["en"],
                     "subtitlesformat": "vtt",
                     "skip_download": True,
-                    "outtmpl": file_path_name,
+                    "outtmpl": youtube.caption_file_path,
                 }
                 # download caption file
                 with YoutubeDL(ydl_opts) as ydl:
-                    ydl.download(url)
+                    ydl.download(youtube.url)
+
             else:
-                print("caption file exists for", url)
-            print("finish test")
-            break
+                print("caption file exists for", youtube.filename)
+        # return youtube object
+        return data
