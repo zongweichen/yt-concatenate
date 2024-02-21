@@ -16,11 +16,9 @@ class Search(Step):
                     print("found the word!")
                     caption = dic
                     time = yt.caption[caption]
-                    Found.yt = yt
-                    Found.caption = caption
-                    Found.time = time
-                    found_those_words.append(Found)
+                    f = Found(yt, caption, time)
+                    found_those_words.append(f)
         # return a list involves all the found words in each Found object
 
-        print("found_those_words: ", found_those_words)
+        print("found_those_words", found_those_words)
         return found_those_words
