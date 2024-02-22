@@ -5,6 +5,7 @@ from pipelines.Steps.get_video_list import GetVideoList
 from pipelines.Steps.download_captions import DownloadCaotions
 from pipelines.Steps.read_caption import ReadCaption
 from pipelines.Steps.search import Search
+from pipelines.Steps.download_video import DownloadVideos
 from pipelines.Steps.postflight import Postflight
 from utils import Utils
 
@@ -24,6 +25,7 @@ def main():
         DownloadCaotions(),
         ReadCaption(),
         Search(),
+        DownloadVideos(),
         Postflight(),
     ]
     utils = Utils()

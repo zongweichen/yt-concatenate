@@ -1,29 +1,29 @@
 import os
-from vtt_to_srt.vtt_to_srt import ConvertFile
 
+from vtt_to_srt.vtt_to_srt import ConvertFile
 from .steps import Step
 
 
 # read caption
 class ReadCaption(Step):
-    def process(self, data, inputs, utils):
+    def process(self, data: list, inputs, utils) -> list:
+        self.change_format_from_vtt_to_srt()
+        print("----------in read caption----------")
         for youtube in data:
-            print("----------in read caption----------")
-            self.change_format_from_vtt_to_srt()
-            # file_list of srt format
-            file_list = os.listdir("download/caption")
-            # read caption file
-            for path in file_list:
-                # save caption in dictionary
-                all_captions = {}
-                check = False
-                srt_file_path = os.path.join("download/caption", path)
-                with open(srt_file_path, "r", encoding="utf-8") as srt_file:
+            check = False
+            # check if caption file exists
+            if utils.caption_file_exists(youtube.filename):
+                path = str(youtube.caption_file_path) + ".en.srt"
+
+                with open(path, "r", encoding="utf-8") as srt_file:
+                    # create a dictionary to store all captions
+                    all_captions = {}
                     # read line by line
                     for line in srt_file:
                         # if "-->" in line, it means it is time
                         if "-->" in line:
                             # set check to True
+
                             check = True
                             time = line.strip()
                             continue
@@ -32,15 +32,17 @@ class ReadCaption(Step):
                             # if line is empty, skip
                             line = line.strip()
                             if line == "":
+                                check = True
                                 continue
                             caption = line
                             # save time and caption
                             all_captions[caption] = time
                             # set check to False,
                             check = False
-                # save all_captions in data
-                youtube.caption = all_captions
+                        # save all_captions in data
 
+                youtube.caption = all_captions
+        # return list of youtube objects
         return data
 
     # change format from vtt to srt

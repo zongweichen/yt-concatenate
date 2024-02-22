@@ -30,6 +30,7 @@ class YouTube:
         self.url = url
         self.filename = self.get_url_for_filename(url)
         self.caption_file_path = self.get_caption_filepath()
+        self.get_video_filepath = self.get_video_filepath()
         self.caption = None
 
     @staticmethod
@@ -55,7 +56,15 @@ class YouTube:
         """
         cap_file_name = self.filename
         return os.path.join(CAPTION_DIR, cap_file_name)
-    
+    def get_video_filepath(self):
+        """
+        取得影片檔案的路徑。
+
+        Returns:
+            str: 影片檔案的路徑。
+        """
+        video_file_name = self.filename
+        return os.path.join(VIDEO_DIR, video_file_name)
     
     def __str__(self):
         """
