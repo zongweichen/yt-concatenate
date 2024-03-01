@@ -6,6 +6,7 @@ class DownloadCaotions(Step):
 
     def process(self, data, inputs, utils):
         print("----------download captions----------")
+
         for youtube in data:
             # check if caption file exists, srt format
             if not utils.caption_file_exists(youtube.caption_file_path):

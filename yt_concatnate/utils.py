@@ -37,4 +37,8 @@ class Utils:
     # 這個method是用來檢查字幕檔案是否存在
     def caption_file_exists(self, filename):
         # the caption file is a vtt file
-        return os.path.exists(f"{CAPTION_DIR}/" + f"{filename}.en.srt")
+        return os.path.exists(f"{filename}.en.srt")
+    
+    def downloa_video_exists(self, filename):
+        # the caption file is a vtt file
+        return os.path.exists(f"{filename}.mp4")

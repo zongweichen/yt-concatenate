@@ -12,7 +12,8 @@ class ReadCaption(Step):
         for youtube in data:
             check = False
             # check if caption file exists
-            if utils.caption_file_exists(youtube.filename):
+        
+            if utils.caption_file_exists(youtube.caption_file_path):
                 path = str(youtube.caption_file_path) + ".en.srt"
 
                 with open(path, "r", encoding="utf-8") as srt_file:
@@ -43,6 +44,7 @@ class ReadCaption(Step):
 
                 youtube.caption = all_captions
         # return list of youtube objects
+        print("----------finish in read caption----------")
         return data
 
     # change format from vtt to srt

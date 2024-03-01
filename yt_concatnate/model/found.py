@@ -19,8 +19,8 @@ class Found:
         Returns:
             str: A string representation of the Found object.
         """
-        content = f"we found filename ->{self.yt.filename},\ncapotion content ->{self.caption},\nTime duriation ->{self.time}"
-        return content
+        return  f"we found filename ->{self.yt.filename},\ncapotion content ->{self.caption},\nTime duriation ->{self.time}"
+        
     
     def __repr__(self):
         """
